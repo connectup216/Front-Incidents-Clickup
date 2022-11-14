@@ -1,14 +1,17 @@
-import { DoughnutChart } from './DoughnutChart'
-import { IncidentsSummaryEmployee } from './IncidentsSummaryEmployee';
+import { useGetAssigneeTasks } from '../../hooks/useGetAssigneeTasks';
+import { DoughnutChart } from '../DoughnutChart'
+import { IncidentsSummaryEmployee } from '../summaries/IncidentsSummaryEmployee';
 
 export const EmployeeProfile = ({member, closeMemberProfile}) => {
 
+  const { tasksByAssignee, isLoading} = useGetAssigneeTasks(member.id)
+
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: Object.keys(tasksByAssignee),
         datasets: [
           {
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: Object.values(tasksByAssignee),
             backgroundColor: [
               'rgb(255, 99, 132)',
               'rgb(54, 162, 235)',
@@ -30,36 +33,7 @@ export const EmployeeProfile = ({member, closeMemberProfile}) => {
             hoverOffset: 10,
             
           },
-        ],
-        options: {
-            plugins: { 
-              legend: {
-                labels: {
-                  fontColor: "white", 
-                  font: {
-                    size: 18 
-                  }
-                }
-              }
-            },scales: {
-                yAxes: [{
-                    ticks: {
-                        fontColor: "green",
-                        fontSize: 18,
-                        stepSize: 1,
-                        beginAtZero: true
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        fontColor: "purple",
-                        fontSize: 14,
-                        stepSize: 1,
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }};
+        ],};
 
   return (
 
@@ -72,11 +46,9 @@ export const EmployeeProfile = ({member, closeMemberProfile}) => {
             </div>
 
             <div className='graph-in-profile'>
-                <DoughnutChart data={data}/>
+              {isLoading ? <h4>Loading...</h4> : <DoughnutChart data={data}/>}
             </div>
-
-            <IncidentsSummaryEmployee/> 
-            
+            <IncidentsSummaryEmployee incidentsOpen={tasksByAssignee.total_incidents_open} incidentsClosed={tasksByAssignee.total_incidents_closed}/> 
         </div>
     </section>
 

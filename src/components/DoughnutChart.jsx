@@ -3,10 +3,10 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const DoughnutChart = ({data}) => {
+export const DoughnutChart = ({data , tittle}) => {
     return (
         <div className='graph-container-child'>
-            <h2>Tittle</h2>
+            <h2>{tittle}</h2>
             <Doughnut data={data}/>
         </div>
     )

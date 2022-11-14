@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Member } from "./Member"
 import { EmployeeProfile } from './EmployeeProfile';
-import { useGetMembers } from '../hooks/useGetMembers';
+import { useGetMembers } from '../../hooks/useGetMembers';
 
 export const Members = () => {
 
