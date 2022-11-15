@@ -1,26 +1,38 @@
 import { useGetAssigneeTasks } from '../../hooks/useGetAssigneeTasks';
+import { useGetHistoryByU } from '../../hooks/useGetHistoryByU'
 import { DoughnutChart } from '../DoughnutChart'
 import { IncidentsSummaryEmployee } from '../summaries/IncidentsSummaryEmployee';
 
 export const EmployeeProfile = ({member, closeMemberProfile}) => {
 
-  const { tasksByAssignee,setTasksByAssignee, isLoading} = useGetAssigneeTasks(member.id)
+  const { tasksByAssignee, setTasksByAssignee, isLoading} = useGetAssigneeTasks(member.id)
+  const { historyByAssignee, setHistoryByAssignee , isLoadingH } = useGetHistoryByU(member.id)
 
-  const filterChange = (filterData) => {
+  const filterChange = (filterData, historyFilterData) => {
+
     setTasksByAssignee(filterData)
+    setHistoryByAssignee(historyFilterData)
+    
   }
 
+  const labelsForGraph = Object.keys(tasksByAssignee);
+  labelsForGraph.push('total_closed_history')
+
+  const valuesForGraph = Object.values(tasksByAssignee);
+  valuesForGraph.push(historyByAssignee.totalClosedH)
+
   const data = {
-      labels: Object.keys(tasksByAssignee),
+      labels: labelsForGraph,
       datasets: [
         {
-          label: '# of Votes',
-          data: Object.values(tasksByAssignee),
+          data: valuesForGraph,
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
+            'rgb(201, 208, 70)',
           ],
           borderColor: [
+            'rgba(0, 0, 0, 1)',
             'rgba(0, 0, 0, 1)',
             'rgba(0, 0, 0, 1)',
           ],
@@ -48,6 +60,7 @@ export const EmployeeProfile = ({member, closeMemberProfile}) => {
               filterChange={filterChange} 
               incidentsOpen={tasksByAssignee.total_incidents_open} 
               incidentsClosed={tasksByAssignee.total_incidents_closed}
+              incidentsClosedByH={historyByAssignee}
               memberId={member.id}
             /> 
 

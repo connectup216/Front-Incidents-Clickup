@@ -22,14 +22,14 @@ export const FilterTimeAssignee = ({filterChange, memberId}) => {
 
     setFiltersDisabled(true)
 
-    const newData = await getATByTime(
+    const {data, dataHistory} = await getATByTime(
       {
         date_gt:fromDate.current.value,
         date_lt: toDate.current.value, 
         userId: memberId
       }
     )
-    filterChange(newData)
+    filterChange(data, dataHistory)
     setFiltersDisabled(false)
   }
 

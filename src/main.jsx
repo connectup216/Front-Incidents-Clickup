@@ -6,7 +6,5 @@ import './css/normalize.css'
 import './css/styles.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <TicketingApp />
-  </React.StrictMode>
 )

@@ -19,7 +19,6 @@ function TicketingApp() {
     labels: Object.keys(tasks),
     datasets: [
       {
-        label: '# Of incidents',
         data: Object.values(tasks),
         backgroundColor: [
           'rgb(255, 99, 132)',

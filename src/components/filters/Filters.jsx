@@ -26,6 +26,7 @@ export const Filters = ( {filterChange} ) => {
                 <p>Time</p>
                 <select ref={timeFilter} className="filter-select" onChange={ makeRequestTime } disabled={filtersDisabled} name="filterOptions" > 
                     <option value='' hidden={true} > Time </option>
+                    <option value='All time' > All time </option>
                     <option value={'This week'} > This week</option>
                     <option value={'2 Weeks ago'} > 2 Weeks ago</option>
                     <option value={'3 Weeks ago'} > 3 Weeks ago</option>

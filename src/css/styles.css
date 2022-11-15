@@ -17,12 +17,20 @@ header {
     width: 100%;
     height: 5vh;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
 }
 
 header nav{
-    width: 30vw;
+    width: 20%;
+}
+
+header h3{
+   width: 70%; 
+   margin: 0;
+   font-family: 'Lato' , sans-serif;
+   color: white;
+   font-weight: lighter;
 }
 
 header button {
@@ -66,7 +74,7 @@ h3{
 
 
 .graph-container-child{
-    width: 60%;
+    width: 50%;
     text-align: center;
 }
 
@@ -154,22 +162,23 @@ h3{
 }
 
 .profile-container{
-    width: 40%;
+    width: 35%;
     height: 90%;
     background: #D9D9D9;
     overflow: auto;
+    border-radius: 5%;
+    box-shadow: 0 0 20px 1px var(--color1);
 }
 
 .graph-in-profile{
     display: flex;
     justify-content: center;
-    margin-bottom: 10%;
-
+    margin-bottom: 8%;
 }
 
 .btn-close{
     position: absolute;
-    right: 65%;
+    right: 63%;
     width: 40px;
 }
 
@@ -177,6 +186,7 @@ h3{
     display: flex;
     width: 100%;
     justify-content: space-around;
+    margin-bottom: 8%;
     align-items: center;
 }
 
@@ -198,4 +208,16 @@ h3{
     padding: 6px;
     border-radius: 10px;
     box-shadow: 0 0 20px 1px var(--color1);
+}
+
+@media (max-width: 1370px) {
+    .profile-container{
+        width: 50%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .profile-container{
+        width: 60%;
+    }
 }
