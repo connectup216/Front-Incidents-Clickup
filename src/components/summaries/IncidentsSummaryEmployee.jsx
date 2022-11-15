@@ -1,9 +1,9 @@
 import { FilterTimeAssignee } from "../filters/FilterTimeAssignee"
 
-export const IncidentsSummaryEmployee = ({incidentsOpen, incidentsClosed}) => {
+export const IncidentsSummaryEmployee = ({incidentsOpen, incidentsClosed,filterChange, memberId}) => {
   return (
     <div className="incidents-summary">
-        <FilterTimeAssignee/>
+        <FilterTimeAssignee memberId={memberId} filterChange={filterChange}/>
 
         <p>Total Incidents Assigned: {incidentsOpen+incidentsClosed}</p>
         <hr  />

@@ -5,7 +5,7 @@ import { useGetIncidentsInfo } from './hooks/useGetIncidentsInfo';
 function TicketingApp() {
 
   const [ sectionVisible, setSectionVisible ] = useState('filters');
-  const { tasks, setTasks, isLoading, setIsLoading } = useGetIncidentsInfo()
+  const { tasks, setTasks, isLoading } = useGetIncidentsInfo()
 
   const changeBarVisible = (section) => {
     setSectionVisible(section)
@@ -54,6 +54,7 @@ function TicketingApp() {
         </div>
         <div className='filters-container'>
           {sectionVisible == 'filters' ? <Filters filterChange={filterChange} /> : <Members/>}
+          
           {isLoading ? <h4>Loading...</h4> : <IncidentsSummaryMain incidentsOpen={tasks.total_incidents_open} incidentsClosed={tasks.total_incidents_closed}/>}
         </div>
       </section>

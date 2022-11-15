@@ -18,6 +18,7 @@ export const useGetAssigneeTasks = (assigneeId) => {
 
     return {
         tasksByAssignee,
+        setTasksByAssignee,
         isLoading,
     }
 
