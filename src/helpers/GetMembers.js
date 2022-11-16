@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getMembers = async() => {
 
-    const {data} = await axios.get(`http://localhost:3000/api/members/`)
+    const {data} = await axios.get(`https://api.cu.connectupweb.com/api/members/`)
     
     const members = data.members.map( member => {
         return {
