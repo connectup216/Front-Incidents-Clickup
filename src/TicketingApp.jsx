@@ -36,12 +36,26 @@ function TicketingApp() {
           'rgba(0, 0, 0, 1)',
           'rgba(0, 0, 0, 1)',
         ],
-        color: 'rgba(0, 0, 0, 1)',
+        Color: 'rgb(255, 159, 64)',
         borderWidth: 1,
         hoverOffset: 10,
         
-      },
-    ]};
+      },]};
+
+  const options =  { 
+    plugins: {
+      legend: {
+          display: true,
+          labels: {
+              color: '#D9D9D9',
+              font: {
+                size: "20px"
+              }
+          }
+      }
+  }
+
+  }
 
 
   return (
@@ -49,7 +63,7 @@ function TicketingApp() {
       <HeaderComp changeSection={changeBarVisible} />
       <section className='main-container'>
         <div className='graph-container'>
-          {isLoading ? <h4>Loading...</h4> : <DoughnutChart data={data} tittle='Graph of incidents'/>}
+          {isLoading ? <h4>Loading...</h4> : <DoughnutChart options={options} data={data} tittle='Graph of incidents'/>}
         </div>
         <div className='filters-container'>
           {sectionVisible == 'filters' ? <Filters filterChange={filterChange} /> : <Members/>}
