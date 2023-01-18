@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 
-import {getATByTime} from '../../helpers/GetATByTime'
+import {getATByTime} from '../../services/GetATByTime'
 
 export const FilterTimeAssignee = ({filterChange, memberId}) => {
 
@@ -36,15 +36,18 @@ export const FilterTimeAssignee = ({filterChange, memberId}) => {
 
     return (
         <form onSubmit={submitFilter} className='time-filter-assignee-container'>
-          <div>
-            <label htmlFor="fromDate">From</label><br />
-            <input disabled={filtersDisabled} ref={fromDate} className='input-date-filter-assignee' type="date" name='fromDate' />
+          <h2>Time Filters</h2>
+          <div className="time-filters-container">
+            <div className="time-filter-div">
+              <label htmlFor="fromDate">From</label><br />
+              <input disabled={filtersDisabled} ref={fromDate} type="date" name='fromDate' />
+            </div>
+            <div className="time-filter-div">
+              <label htmlFor="toDate">To</label><br />
+              <input disabled={filtersDisabled} ref={toDate} type="date" name='toDate' />
+            </div>
           </div>
-          <div>
-            <label htmlFor="toDate">To</label><br />
-            <input disabled={filtersDisabled} ref={toDate} className='input-date-filter-assignee' type="date" name='toDate' />
-          </div>
-          <button type="submit"> {">>"} </button>
+          <button className="userprofile-custom-buttom" type="submit">Search</button>
         </form>
     )
 }

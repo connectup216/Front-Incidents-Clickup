@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Member } from "./Member"
 import { EmployeeProfile } from './EmployeeProfile';
 import { useGetMembers } from '../../hooks/useGetMembers';
+import { Loading } from "../loading/Loading";
+import { LoadingWhite } from "../loading/LoadingWhite";
 
 export const Members = () => {
 
@@ -24,15 +26,17 @@ export const Members = () => {
                 <hr />
             </div>
             <div>
-            {isLoading ? 
-                <h2>Loading...</h2> : 
-                members?.map( member => 
-                    <Member 
-                        key={member.id}
-                        seeMemberProfile={seeMemberProfile}
-                        {...member}
-                    />
-                )}
+            {
+                isLoading 
+                ? <LoadingWhite />
+                : members?.map( member => 
+                        <Member 
+                            key={member.id}
+                            seeMemberProfile={seeMemberProfile}
+                            {...member}
+                        />
+                    )
+            }
             </div>
             {
                 memberProfile !== '' ? 

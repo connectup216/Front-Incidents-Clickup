@@ -1,74 +1,42 @@
 import { useState } from 'react'
-import { HeaderComp, Members, Filters, DoughnutChart,IncidentsSummaryMain } from './components'
-import { useGetIncidentsInfo } from './hooks/useGetIncidentsInfo';
+import { HeaderComp, Members, Filters, IncidentsSummaryMain } from './components'
+import { ChartsWithMemberInfo } from './components/ChartsWithMemberInfo'
+import { GeneralChart } from './components/GeneralChart'
 
 function TicketingApp() {
 
-  const [ sectionVisible, setSectionVisible ] = useState('filters');
-  const { tasks, setTasks, isLoading } = useGetIncidentsInfo()
+  const [sectionVisible, setSectionVisible] = useState('filters')
+  const [tasksRelevantInfo, setTasksRelevantInfo] = useState({})
 
   const changeBarVisible = (section) => {
     setSectionVisible(section)
   }
 
-  const filterChange = (filterData) => {
-    setTasks(filterData)
+  const onTasks = (tasksInfo) => {
+    setTasksRelevantInfo(tasksInfo)
   }
-
-  const data = {
-    labels: Object.keys(tasks),
-    datasets: [
-      {
-        data: Object.values(tasks),
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 206, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(153, 102, 255)',
-          'rgb(255, 159, 64)',
-        ],
-        borderColor: [
-          'rgba(0, 0, 0, 1)',
-          'rgba(0, 0, 0, 1)',
-          'rgba(0, 0, 0, 1)',
-          'rgba(0, 0, 0, 1)',
-          'rgba(0, 0, 0, 1)',
-          'rgba(0, 0, 0, 1)',
-        ],
-        Color: 'rgb(255, 159, 64)',
-        borderWidth: 1,
-        hoverOffset: 10,
-        
-      },]};
-
-  const options =  { 
-    plugins: {
-      legend: {
-          display: true,
-          labels: {
-              color: '#D9D9D9',
-              font: {
-                size: "20px"
-              }
-          }
-      }
-  }
-
-  }
-
 
   return (
     <>
       <HeaderComp changeSection={changeBarVisible} />
       <section className='main-container'>
         <div className='graph-container'>
-          {isLoading ? <h4>Loading...</h4> : <DoughnutChart options={options} data={data} tittle='Graph of incidents'/>}
+
+          <GeneralChart isHidden={sectionVisible} onTasks={onTasks} tittle='Graph of incidents'/> 
+          <ChartsWithMemberInfo isHidden={sectionVisible} onTasks={onTasks} />
+        
         </div>
         <div className='filters-container'>
-          {sectionVisible == 'filters' ? <Filters filterChange={filterChange} /> : <Members/>}
+          {sectionVisible == 'filters' ? <Filters /> : <Members/>}
           
-          {isLoading ? <h4>Loading...</h4> : <IncidentsSummaryMain incidentsOpen={tasks.total_incidents_open} incidentsClosed={tasks.total_incidents_closed}/>}
+          {
+            tasksRelevantInfo?.total_incidents_open 
+            &&  
+            <IncidentsSummaryMain 
+              incidentsOpen={tasksRelevantInfo?.total_incidents_open} 
+              incidentsClosed={tasksRelevantInfo?.total_incidents_closed}
+            />
+          }
         </div>
       </section>
     </>

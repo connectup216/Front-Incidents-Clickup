@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { getIncidentsInfo } from "../helpers/GetIncidentsInfo";
+import { getIncidentsInfo, getTasksWithMembersData } from "../services/GetIncidentsInfo";
 
 export const useGetIncidentsInfo = () => {
 
     const [tasks, setTasks] = useState('');
     const [isLoading, setIsLoading] = useState( true );
+
+    const [tasksWithMembersInfo, setTasksWithMembersInfo] = useState('');
+    const [isLoadingTkMmbrInfo, setIsLoadingTkMmbrInfo] = useState( true );
 
     const getTasksReq = async () => {
         const tasksReq = await getIncidentsInfo();
@@ -12,15 +15,19 @@ export const useGetIncidentsInfo = () => {
         setIsLoading(false);
     } 
 
-    useEffect( ()=>{
-        getTasksReq();
-    }, [])
+    const getTasksWthMembrsInfo = async () => {
+        const tasksReq = await getTasksWithMembersData();
+        setTasksWithMembersInfo(tasksReq);
+        setIsLoadingTkMmbrInfo(false);
+    } 
 
     return {
         tasks,
-        setTasks,
         isLoading,
-        setIsLoading
+        tasksWithMembersInfo,
+        isLoadingTkMmbrInfo,
+        getTasksReq,
+        getTasksWthMembrsInfo,
     }
 
 }

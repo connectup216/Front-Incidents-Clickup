@@ -1,4 +1,4 @@
-export * from './DoughnutChart'
+export * from './GeneralChart'
 export * from './filters/FilterTimeAssignee'
 export * from './filters/Filters'
 export * from './HeaderComp'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAssigneeTasks } from "../helpers/GetAssigneeTasks";
+import { getAssigneeTasks } from "../services/GetAssigneeTasks";
 
 export const useGetAssigneeTasks = (assigneeId) => {
 

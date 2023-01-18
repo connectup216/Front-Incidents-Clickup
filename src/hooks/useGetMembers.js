@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMembers } from "../helpers/GetMembers";
+import { getMembers } from "../services/GetMembers";
 
 export const useGetMembers = () => {
 

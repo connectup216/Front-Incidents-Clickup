@@ -1,9 +1,8 @@
-import axios from "axios";
+import { makeRequests } from "../utils/axiosConfig";
 
 export const getMembers = async() => {
 
-    const {data} = await axios.get(`https://api.cu.connectupweb.com/api/members/`)
-    
+    const {data} = await makeRequests.get(`/members/`)
     const members = data.members.map( member => {
         return {
             id: member.id,

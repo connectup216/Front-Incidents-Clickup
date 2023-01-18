@@ -1,7 +1,7 @@
-import { getTaskByTime } from "../../helpers/GetTaskByTime";
+import { getTaskByTime } from "../../services/GetTaskByTime";
 import { useRef, useState } from "react";
 
-export const Filters = ( {filterChange} ) => {
+export const Filters = ( {} ) => {
 
     const [value, setValue] = useState('')
     const [filtersDisabled, setFiltersDisabled] = useState(false);
@@ -11,7 +11,7 @@ export const Filters = ( {filterChange} ) => {
         setValue(target.value)
         setFiltersDisabled(true)
         const newData = await getTaskByTime(target.value)
-        filterChange(newData)
+        // filterChange(newData)
         setFiltersDisabled(false)
     }
 

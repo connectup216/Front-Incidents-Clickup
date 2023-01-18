@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getHistoryByU } from "../helpers/GetHistoryByU";
+import { getHistoryByU } from "../services/GetHistoryByU";
 
 export const useGetHistoryByU = (assigneeId) => {
 
