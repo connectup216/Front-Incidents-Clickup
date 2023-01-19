@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getIncidentsInfo, getTasksWithMembersData } from "../services/GetIncidentsInfo";
+import { useState } from "react";
+import { getIncidentsInfo, getTasksWithMembersData } from "../services/generalInfoServices";
 
 export const useGetIncidentsInfo = () => {
 

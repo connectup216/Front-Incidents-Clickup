@@ -1,44 +1,55 @@
 import { useGetAssigneeTasks } from '../../hooks/useGetAssigneeTasks';
-import { useGetHistoryByU } from '../../hooks/useGetHistoryByU'
 import { percentageFormatter } from '../../utils/percentageFormatter'
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { useState, useEffect } from 'react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const useEmployeeProfile = (member) => {
-    const { tasksByAssignee, setTasksByAssignee, isLoading} = useGetAssigneeTasks(member.id)
-  const { historyByAssignee, setHistoryByAssignee , isLoadingH } = useGetHistoryByU(member.id)
+
+  const { tasksByAssignee, setTasksByAssignee, isLoading, setIsLoading} = useGetAssigneeTasks(member.id)
+  const [dataChart, setDataChart] = useState('')
 
   const filterChange = (filterData, historyFilterData) => {
-    setTasksByAssignee(filterData)
-    setHistoryByAssignee(historyFilterData)
+    setTasksByAssignee({
+      tasks: filterData,
+      dataHistory: historyFilterData
+    })
   }
 
+  useEffect(() => {
+    if(tasksByAssignee?.tasks && tasksByAssignee?.dataHistory){
+      const labelsForGraph = Object.keys(tasksByAssignee.tasks);
+      labelsForGraph.push('total_closed_history')
+    
+      const valuesForGraph = Object.values(tasksByAssignee.tasks);
+      valuesForGraph.push(tasksByAssignee?.dataHistory?.totalClosedH)
 
-  const labelsForGraph = Object.keys(tasksByAssignee);
-  labelsForGraph.push('total_closed_history')
+      setDataChart({
+        labels: labelsForGraph,
+        datasets: [
+          {
+            data: valuesForGraph,
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)',
+              'rgb(201, 208, 70)',
+            ],
+            borderColor: [
+              'rgba(0, 0, 0, 1)',
+            ],
+            borderWidth: 1,
+            hoverOffset: 10,
+          },
+        ]}
+      )
+      setIsLoading(false);
+    }
 
-  const valuesForGraph = Object.values(tasksByAssignee);
-  valuesForGraph.push(historyByAssignee.totalClosedH)
+  }, [tasksByAssignee])
 
-  const data = {
-      labels: labelsForGraph,
-      datasets: [
-        {
-          data: valuesForGraph,
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(201, 208, 70)',
-          ],
-          borderColor: [
-            'rgba(0, 0, 0, 1)',
-          ],
-          borderWidth: 1,
-          hoverOffset: 10,
-        },
-      ]};
+
 
   const options =  { 
     tooltips: {
@@ -63,9 +74,9 @@ export const useEmployeeProfile = (member) => {
   return {
     tasksByAssignee,
     isLoading,
-    historyByAssignee,
+    historyByAssignee: tasksByAssignee?.dataHistory,
     filterChange,
     options,
-    data,
+    dataChart,
   }
 }

@@ -14,7 +14,7 @@ export const EmployeeProfile = ({member, closeMemberProfile}) => {
     isLoading,
     historyByAssignee,
     options,
-    data,
+    dataChart,
     filterChange,
   } = useEmployeeProfile(member)
 
@@ -36,14 +36,14 @@ export const EmployeeProfile = ({member, closeMemberProfile}) => {
                 {
                   isLoading 
                   ? <Loading /> 
-                  : <Pie ref={userChart} data={data} options={options}/>
+                  : <Pie ref={userChart} data={dataChart} options={options}/>
                 }
               </div>
 
               <IncidentsSummaryEmployee 
                 filterChange={filterChange} 
-                incidentsOpen={tasksByAssignee.total_incidents_open} 
-                incidentsClosed={tasksByAssignee.total_incidents_closed}
+                incidentsOpen={tasksByAssignee?.tasks?.total_incidents_open} 
+                incidentsClosed={tasksByAssignee?.tasks?.total_incidents_closed}
                 incidentsClosedByH={historyByAssignee}
                 memberId={member.id}
                 chart={userChart}

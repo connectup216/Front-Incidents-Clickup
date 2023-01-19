@@ -1,18 +1,17 @@
-import { getTaskByTime } from "../../services/GetTaskByTime";
 import { useRef, useState } from "react";
 
 export const Filters = ( {} ) => {
 
-    const [value, setValue] = useState('')
+    // const [value, setValue] = useState('')
     const [filtersDisabled, setFiltersDisabled] = useState(false);
     const timeFilter = useRef()
 
     const makeRequestTime = async ({target}) => {
-        setValue(target.value)
-        setFiltersDisabled(true)
-        const newData = await getTaskByTime(target.value)
-        // filterChange(newData)
-        setFiltersDisabled(false)
+        // setValue(target.value)
+        // setFiltersDisabled(true)
+        // const newData = await getTaskByTime(target.value)
+        // // filterChange(newData)
+        // setFiltersDisabled(false)
     }
 
   return (

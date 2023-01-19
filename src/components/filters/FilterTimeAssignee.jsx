@@ -1,38 +1,31 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
-import {getATByTime} from '../../services/GetATByTime'
+import { getAssigneeTasks } from "../../services/memberServices";
 
 export const FilterTimeAssignee = ({filterChange, memberId}) => {
 
   const [dates, setDates] = useState({date_gt:'',date_lt:''})
   const [filtersDisabled, setFiltersDisabled] = useState(false);
-
   const fromDate = useRef()
   const toDate = useRef()
 
   const submitFilter = async (event) => {
     event.preventDefault()
 
-    setDates(
-      {
-      date_gt:fromDate.current.value,
+    setDates({
+      date_gt: fromDate.current.value,
       date_lt: toDate.current.value
-      }
-    )
+    })
 
     setFiltersDisabled(true)
-
-    const {data, dataHistory} = await getATByTime(
-      {
-        date_gt:fromDate.current.value,
-        date_lt: toDate.current.value, 
-        userId: memberId
-      }
+    const {data, dataHistory} = await getAssigneeTasks(
+        memberId,
+        fromDate.current.value || 'none',
+        toDate.current.value || 'none', 
     )
     filterChange(data, dataHistory)
     setFiltersDisabled(false)
   }
-
 
     return (
         <form onSubmit={submitFilter} className='time-filter-assignee-container'>
