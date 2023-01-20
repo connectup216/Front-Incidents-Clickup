@@ -3,29 +3,25 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 import ChartDataLabels from 'chartjs-plugin-datalabels'
-import { useChartsWtMbrsInfo } from './hooks/useChartsWtMbrsInfo';
 import { useRef } from 'react';
 import { exportChart } from '../utils/exportChart';
 import { Loading } from './loading/Loading';
 
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
-export const ChartsWithMemberInfo = ({ isHidden }) => {
-
+export const ChartsWithMemberInfo = ({ 
+    isHidden,
+    inViewChart,
+    chartDataTSKOpen,
+    chartDataTSKClosed,
+    chartDataTSKClosedHI,
+    isLoadingTkMmbrInfo,
+    options,
+    onChangeChart }) => {
     const TSKOpenChart = useRef(null)
     const TSKClosedChart = useRef(null)
     const TSKClosedHIChart = useRef(null)
-
-    const {
-        isLoadingTkMmbrInfo,
-        chartDataTSKOpen,
-        chartDataTSKClosed,
-        chartDataTSKClosedHI,
-        options,
-        inViewChart,
-        onChangeChart,
-    } = useChartsWtMbrsInfo();
-      
+  
     if(isHidden!=='members') return <></>
     return (
         <>

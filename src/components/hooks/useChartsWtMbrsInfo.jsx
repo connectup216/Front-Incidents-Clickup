@@ -25,8 +25,6 @@ export const useChartsWtMbrsInfo = () => {
     const [ graphDataTSKClosed, setGraphDataTSKClosed ] = useState([]);
     const [ graphDataTSKClosedHI, setGraphDataTSKClosedHI ] = useState([]);
 
-    useEffect(() => {getTasksWthMembrsInfo()}, [])
-
     useEffect(() => {
 
         setLabels({
@@ -151,8 +149,9 @@ export const useChartsWtMbrsInfo = () => {
     chartDataTSKOpen,
     chartDataTSKClosed,
     chartDataTSKClosedHI,
-    options,
+    optionsWTMF: options,
     inViewChart,
     onChangeChart,
+    getTasksWthMembrsInfo
   }
 }

@@ -1,6 +1,6 @@
 export * from './GeneralChart'
 export * from './filters/FilterTimeAssignee'
-export * from './filters/Filters'
+export * from './filters/FiltersTime'
 export * from './HeaderComp'
 export * from './members/Members'
 export * from './summaries/IncidentsSummaryEmployee'

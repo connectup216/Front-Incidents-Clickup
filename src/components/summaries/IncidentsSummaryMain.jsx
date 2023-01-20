@@ -1,11 +1,8 @@
-export const IncidentsSummaryMain = ({incidentsOpen,incidentsClosed}) => {
+export const IncidentsSummaryMain = ({incidentsOpen, incidentsClosed}) => {
   return (
     <div className="incidents-summary">
-        <h5>Total Incidents Open</h5>
-        <p>{incidentsOpen}</p>
-        <hr  />
-        <h5>Total Incidents Closed</h5>
-        <p>{incidentsClosed}</p>
+        <h5>Total Incidents Open: <span>{incidentsOpen}</span> </h5>
+        <h5>Total Incidents Closed: <span>{incidentsClosed}</span> </h5>
     </div>
   )
 }

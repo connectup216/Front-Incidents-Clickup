@@ -9,15 +9,22 @@ export const useGetIncidentsInfo = () => {
     const [tasksWithMembersInfo, setTasksWithMembersInfo] = useState('');
     const [isLoadingTkMmbrInfo, setIsLoadingTkMmbrInfo] = useState( true );
 
-    const getTasksReq = async () => {
-        const tasksReq = await getIncidentsInfo();
+    const getTasksReq = async (date_gt = 'none', date_lt = 'none') => {
+        setIsLoading(true);
+
+        const tasksReq = await getIncidentsInfo(date_gt, date_lt);
         setTasks(tasksReq);
+
         setIsLoading(false);
     } 
 
-    const getTasksWthMembrsInfo = async () => {
-        const tasksReq = await getTasksWithMembersData();
+    const getTasksWthMembrsInfo = async (date_gt = 'none', date_lt = 'none') => {
+        setIsLoadingTkMmbrInfo(true);
+
+        const tasksReq = await getTasksWithMembersData(date_gt, date_lt);
+        console.log(tasksReq);
         setTasksWithMembersInfo(tasksReq);
+        
         setIsLoadingTkMmbrInfo(false);
     } 
 

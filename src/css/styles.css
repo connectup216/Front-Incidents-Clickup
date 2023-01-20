@@ -115,8 +115,19 @@ header button:hover{
 }
 
 .incidents-summary{
-    text-align: center;
-    font-size: 1.3em;
+    width: 100%;
+    text-align: start;
+    background: var(--color4);
+    color: var(--color1);
+    border-radius: 20px;
+    padding: 10px 0;
+    margin-top: 50px;
+}
+
+.incidents-summary h5{
+    padding: 10px;
+    margin: 0;
+    font-size: 1em;
 }
 
 .member-item{
@@ -406,6 +417,52 @@ header button:hover{
     font-size: 1.2em;
     font-style: normal;
     color: var(--color3);
+}
+
+.time-filter-container-main-screen{
+    width: 90%;
+    padding: 10px 0;
+    border-bottom: 2px var(--color2) solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-filter-container-main-screen label{
+    font-size: 1.3em;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.time-filter-container-main-screen input {
+    width: 90%;
+    padding: 10px;
+    color: var(--color3);
+    border: 2px solid var(--color4);
+    border-radius: 8px;
+    box-shadow: 0 0 4px 1px var(--color4);
+}
+
+.dropdown-section-container{
+    border-bottom: 2px solid var(--color4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 0 0;
+}
+
+.dropdown-section-container h3{
+    padding-bottom: 10px;
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.dropdown-body{
+    transition: .2s;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 @media (max-width: 1530px) {

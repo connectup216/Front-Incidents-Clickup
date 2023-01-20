@@ -1,6 +1,5 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { useDoughnutChart } from './hooks/useDoughnutChart';
 import { useRef } from 'react';
 import { exportChart } from '../utils/exportChart';
 
@@ -8,15 +7,9 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Loading } from './loading/Loading';
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
-export const GeneralChart = ({ tittle, onTasks, isHidden }) => {
+export const GeneralChart = ({ tittle, isHidden, options, chartData, isLoading }) => {
 
     const generalChart = useRef(null)
-
-    const {
-      isLoading,
-      chartData,
-      options
-    } = useDoughnutChart(onTasks)
 
     if(isHidden!=='filters') return <></>
     return (

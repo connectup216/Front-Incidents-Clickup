@@ -3,16 +3,14 @@ import { useEffect, useState } from 'react';
 import { useGetIncidentsInfo } from '../../hooks/useGetIncidentsInfo';
 import { percentageFormatter } from '../../utils/percentageFormatter';
 
-export const useDoughnutChart = ( onTasks = () => '' ) => {
-    const { tasks, isLoading, getTasksReq,} = useGetIncidentsInfo();
+  export const useGeneralChart = ( onTasks = () => '' ) => {
+    const { tasks, isLoading, getTasksReq } = useGetIncidentsInfo();
 
     const [ chartData, setChartData ] = useState('')
     const [ graphData, setGraphData ] = useState({
         labels: null,
         data: null
     });
-
-    useEffect(() => {getTasksReq()}, [])
 
     useEffect(() => {
         setGraphData({ labels: Object.keys(tasks), data: Object.values(tasks) })
@@ -63,7 +61,8 @@ export const useDoughnutChart = ( onTasks = () => '' ) => {
               padding: 30,
               color: '#404069',
               font: {
-                size: "20px"
+                size: "20px",
+                weight: 'bolder',
               },
               boxWidth: 60,
               boxHeight: 15,
@@ -98,5 +97,6 @@ export const useDoughnutChart = ( onTasks = () => '' ) => {
     isLoading,
     chartData,
     options,
+    getTasksReq
   }
 }
