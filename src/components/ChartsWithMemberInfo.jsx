@@ -32,7 +32,7 @@ export const ChartsWithMemberInfo = ({
                 <h2 className='graph-title'>
                     {inViewChart == 'TSKOpen' && 'Open tasks assigned by member'}
                     {inViewChart == 'TSKClosed' && 'Closed tasks assigned by member'}
-                    {inViewChart == 'TSKClosedHI' && 'Closed tasks in historical records assigned by member'}
+                    {inViewChart == 'TSKClosedHI' && 'Closed tasks in historical records by member'}
                 </h2>
                 <div className={`graph-item ${inViewChart !== 'TSKOpen' && 'hidden' } `} >
                     <Pie ref={TSKOpenChart} data={chartDataTSKOpen} options={options}/>

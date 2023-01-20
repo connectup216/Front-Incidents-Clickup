@@ -8,11 +8,6 @@ export const getAssigneeTasks = async(userId, date_gt, date_lt) => {
     return { data, dataHistory}
 }
 
-// export const getAssigneeTasks = async(assigneeId) => {
-//     const {data} = await makeRequests.get(`/tasks/user/${assigneeId}`)
-//     return data
-// }
-
 export const getMembers = async() => {
 
     const {data} = await makeRequests.get(`/members/`)
