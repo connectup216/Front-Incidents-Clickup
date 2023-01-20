@@ -7,6 +7,7 @@ export const IncidentsSummaryEmployee = ({
   incidentsClosedByH,
   filterChange, 
   memberId,
+  memberName,
   chart}) => {
 
   return (
@@ -17,7 +18,7 @@ export const IncidentsSummaryEmployee = ({
         <p className="summary-data-userprofile" >Total Incidents Assigned Non-Closed: <span>{incidentsOpen}</span></p>
         <p className="summary-data-userprofile" >Total Incidents Assigned Closed: <span>{incidentsClosed}</span></p>
         <p className="summary-data-userprofile" >Total Incidents Closed By Historial: <span>{incidentsClosedByH?.totalClosedH}</span></p>
-        <button onClick={(e) => exportChart(e, chart)} className='userprofile-custom-buttom export-button-userprofile'>Export Chart</button>
+        <button onClick={(e) => exportChart(e, chart, `${memberName}Chart`)} className='userprofile-custom-buttom export-button-userprofile'>Export Chart</button>
 
     </div>
   )

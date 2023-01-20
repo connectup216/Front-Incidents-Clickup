@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 
-export const exportChart = (e, chart, title) => {
+export const exportChart = (e, chart, title='chart') => {
     e.preventDefault()
     const image = chart.current.canvas.toDataURL('image/png', 1.0);
 

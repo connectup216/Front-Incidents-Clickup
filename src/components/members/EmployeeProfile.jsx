@@ -46,6 +46,7 @@ export const EmployeeProfile = ({member, closeMemberProfile}) => {
                 incidentsClosed={tasksByAssignee?.tasks?.total_incidents_closed}
                 incidentsClosedByH={historyByAssignee}
                 memberId={member.id}
+                memberName={member.username}
                 chart={userChart}
               /> 
             </div>
