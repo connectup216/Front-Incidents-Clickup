@@ -34,7 +34,6 @@ export const useChartsWtMbrsInfo = () => {
         setGraphDataTSKOpen(tasksWithMembersInfo?.membersData?.map( (member) => member.total_incidents_open))
         setGraphDataTSKClosed(tasksWithMembersInfo?.membersData?.map( (member) => member.total_incidents_closed))
         setGraphDataTSKClosedHI(tasksWithMembersInfo?.membersData?.map( (member) => member.total_incidents_closed_historial))
-
     }, [tasksWithMembersInfo])
 
     useEffect(() => {

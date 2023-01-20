@@ -22,7 +22,6 @@ export const useGetIncidentsInfo = () => {
         setIsLoadingTkMmbrInfo(true);
 
         const tasksReq = await getTasksWithMembersData(date_gt, date_lt);
-        console.log(tasksReq);
         setTasksWithMembersInfo(tasksReq);
         
         setIsLoadingTkMmbrInfo(false);
