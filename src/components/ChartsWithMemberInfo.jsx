@@ -13,13 +13,11 @@ export const ChartsWithMemberInfo = ({
     isHidden,
     inViewChart,
     chartDataTSKOpen,
-    chartDataTSKClosed,
     chartDataTSKClosedHI,
     isLoadingTkMmbrInfo,
     options,
     onChangeChart }) => {
     const TSKOpenChart = useRef(null)
-    const TSKClosedChart = useRef(null)
     const TSKClosedHIChart = useRef(null)
   
     if(isHidden!=='members') return <></>
@@ -31,19 +29,11 @@ export const ChartsWithMemberInfo = ({
             : <div className='graph-container-child'>
                 <h2 className='graph-title'>
                     {inViewChart == 'TSKOpen' && 'Open tasks assigned by member'}
-                    {inViewChart == 'TSKClosed' && 'Closed tasks assigned by member'}
                     {inViewChart == 'TSKClosedHI' && 'Closed tasks in historical records by member'}
                 </h2>
                 <div className={`graph-item ${inViewChart !== 'TSKOpen' && 'hidden' } `} >
                     <Pie ref={TSKOpenChart} data={chartDataTSKOpen} options={options}/>
                     <button className='main-export-chart-button' onClick={(e) => exportChart(e, TSKOpenChart, 'TaskOpenByMembersChart')}>
-                        EXPORT
-                    </button>
-                </div> 
-
-                <div className={`graph-item ${inViewChart !== 'TSKClosed' && 'hidden' } `}>
-                    <Pie ref={TSKClosedChart} data={chartDataTSKClosed} options={options}/>
-                    <button className='main-export-chart-button' onClick={(e) => exportChart(e, TSKClosedChart, 'TaskClosedByMembersChart')}>
                         EXPORT
                     </button>
                 </div> 
@@ -59,10 +49,6 @@ export const ChartsWithMemberInfo = ({
                     <figure 
                         className={`circle ${inViewChart == 'TSKOpen' && 'circle-active' } `} 
                         onClick={(e) => onChangeChart(e, 'TSKOpen')}
-                    />
-                    <figure 
-                        className={`circle ${inViewChart == 'TSKClosed' && 'circle-active' } `} 
-                        onClick={(e) => onChangeChart(e, 'TSKClosed')}
                     />
                     <figure 
                         className={`circle ${inViewChart == 'TSKClosedHI' && 'circle-active' } `} 

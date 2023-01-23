@@ -29,7 +29,6 @@ function TicketingApp() {
   const {
     isLoadingTkMmbrInfo,
     chartDataTSKOpen,
-    chartDataTSKClosed,
     chartDataTSKClosedHI,
     optionsWTMF,
     inViewChart,
@@ -55,7 +54,6 @@ function TicketingApp() {
             isHidden={sectionVisible} 
             inViewChart={inViewChart}
             chartDataTSKOpen= {chartDataTSKOpen}
-            chartDataTSKClosed= {chartDataTSKClosed}
             chartDataTSKClosedHI= {chartDataTSKClosedHI}
             isLoadingTkMmbrInfo={isLoadingTkMmbrInfo}
             options={optionsWTMF}

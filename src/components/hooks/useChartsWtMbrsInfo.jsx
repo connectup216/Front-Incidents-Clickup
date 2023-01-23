@@ -18,11 +18,9 @@ export const useChartsWtMbrsInfo = () => {
     });
 
     const [ chartDataTSKOpen, setChartDataTSKOpen ] = useState({})
-    const [ chartDataTSKClosed, setChartDataTSKClosed ] = useState({})
     const [ chartDataTSKClosedHI, setChartDataTSKClosedHI ] = useState({})
 
     const [ graphDataTSKOpen, setGraphDataTSKOpen ] = useState([]);
-    const [ graphDataTSKClosed, setGraphDataTSKClosed ] = useState([]);
     const [ graphDataTSKClosedHI, setGraphDataTSKClosedHI ] = useState([]);
 
     useEffect(() => {
@@ -32,7 +30,6 @@ export const useChartsWtMbrsInfo = () => {
            colors: tasksWithMembersInfo?.membersData?.map( (member) => member.color)
         })
         setGraphDataTSKOpen(tasksWithMembersInfo?.membersData?.map( (member) => member.total_incidents_open))
-        setGraphDataTSKClosed(tasksWithMembersInfo?.membersData?.map( (member) => member.total_incidents_closed))
         setGraphDataTSKClosedHI(tasksWithMembersInfo?.membersData?.map( (member) => member.total_incidents_closed_historial))
     }, [tasksWithMembersInfo])
 
@@ -51,22 +48,6 @@ export const useChartsWtMbrsInfo = () => {
             },]
         })
     }, [graphDataTSKOpen])
-
-    useEffect(() => {
-        setChartDataTSKClosed({
-        labels: labels,
-        datasets: [
-            {
-            data: graphDataTSKClosed,
-            backgroundColor: labels.colors,
-            borderColor: [
-                'rgba(0, 0, 0, 1)',
-            ],
-            borderWidth: 1,
-            hoverOffset: 10,
-            },]
-        })
-    }, [graphDataTSKClosed])
     
     useEffect(() => {
         setChartDataTSKClosedHI({
@@ -146,7 +127,6 @@ export const useChartsWtMbrsInfo = () => {
   return{
     isLoadingTkMmbrInfo,
     chartDataTSKOpen,
-    chartDataTSKClosed,
     chartDataTSKClosedHI,
     optionsWTMF: options,
     inViewChart,
